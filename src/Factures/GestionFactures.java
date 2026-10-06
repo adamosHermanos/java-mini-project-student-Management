@@ -1,5 +1,7 @@
 package Factures;
 
+import java.util.Optional;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -13,6 +15,13 @@ public class GestionFactures implements IGestionFacture {
 	
 	public void enregistrer (Facture f) {
 		
-		
+		Optional<Facture> d = idaoFactures.findByNumber(f.getNumero());
+		if(d.isPresent()) {
+			System.out.println("facture deja exist");
+		}
+		else {
+			idaoFactures.save(f);
+			System.out.println("saver");
+		}
 	}
 }
