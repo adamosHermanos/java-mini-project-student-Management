@@ -1,5 +1,6 @@
 package Factures;
 
+import java.util.List;
 import java.util.Optional;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +22,16 @@ public class GestionFactures implements IGestionFacture {
 		}
 		else {
 			idaoFactures.save(f);
-			System.out.println("saver");
+			System.out.println("facture enregistrer");
 		}
+	}
+	
+	public void afficheReg(Facture f) {
+		for(Reglement r : f.getReglements()){
+			System.out.println(r);
+		}
+	}
+	public Optional<Facture> chercherParNumero(String numero){
+		return idaoFactures.findByNumber(numero);
 	}
 }
